@@ -17,6 +17,8 @@
         .dropdown:hover .dropdown-content { display: block; }
         .dropdown-content a { color: #78716c; padding: 12px 16px; text-decoration: none; display: block; }
         .dropdown-content a:hover { background-color: #F0EBE3; color: #A52A2A; }
+        .card { background-color: #FFFFFF; border: 1px solid #F0EBE3; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
 <body class="antialiased">
@@ -38,86 +40,96 @@
     </header>
 
     <main class="container mx-auto px-6 py-12 max-w-4xl">
-        <div class="mb-12 text-center">
+        <div class="mb-16 text-center">
             <img src="images/profile.jpg" alt="Raul Rocha" class="w-48 h-48 rounded-full mx-auto mb-6 object-cover border-4 border-gray-100 shadow-lg">
             <h1 class="text-4xl font-bold mb-4">Hi, I'm Raul Rocha</h1>
             <p class="text-xl text-gray-600">Data Scientist & LLM Engineer</p>
         </div>
 
-        <section class="prose prose-lg max-w-none">
-            <p class="text-gray-700 leading-relaxed mb-6">
-                A Data Scientist and LLM Engineer with a passion for building systems that transform messy, unstructured data into clear signals and smarter decisions.
-            </p>
+        <div class="space-y-8">
+            <div class="card p-8">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    A Data Scientist and LLM Engineer with a passion for building systems that transform messy, unstructured data into clear signals and smarter decisions.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    My journey started at USP, where I studied Molecular Sciences: a deeply interdisciplinary program that gave me strong roots in math, statistics, programming, and scientific thinking. Since then, I've worked across the data lifecycle, from SQL pipelines and automated dashboards to forecasting models, churn prediction, and production-ready GenAI solutions.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Over the last few years, I've led and delivered projects that improved marketing performance, cut operational time, and helped teams move faster with fewer errors. What excites me isn't just building a model; it's building something that works. Something that integrates with people, processes, and platforms.
+                </p>
+            </div>
 
-            <p class="text-gray-700 leading-relaxed mb-6">
-                My journey started at USP, where I studied Molecular Sciences: a deeply interdisciplinary program that gave me strong roots in math, statistics, programming, and scientific thinking. Since then, I've worked across the data lifecycle, from SQL pipelines and automated dashboards to forecasting models, churn prediction, and production-ready GenAI solutions.
-            </p>
+            <div class="card p-8">
+                <h2 class="text-2xl font-semibold mb-6" style="color: #A52A2A;">What I work on</h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li>Fine-tuning open-source LLMs (Mistral, DeepSeek, etc.) for business-specific use cases</li>
+                    <li>Designing RAG pipelines using vector DBs, LangChain, and semantic search</li>
+                    <li>Deploying LLMs on AWS, with scalability and cost in mind (SageMaker, ECR, Athena, S3)</li>
+                    <li>Building AI agents that automate complex workflows like campaign mapping</li>
+                    <li>Maintaining clean SQL pipelines for marketing, ecommerce, and funnel analytics</li>
+                </ul>
+                <p class="text-gray-700 mt-6">
+                    When needed, I still reach for traditional ML, especially when a lean logistic regression or XGBoost model solves the problem just as well.
+                </p>
+                <p class="text-gray-700 italic mt-4">I currently specialize in the practical side of Generative AI.</p>
+            </div>
 
-            <p class="text-gray-700 leading-relaxed mb-8">
-                Over the last few years, I've led and delivered projects that improved marketing performance, cut operational time, and helped teams move faster with fewer errors. What excites me isn't just building a model; it's building something that works. Something that integrates with people, processes, and platforms.
-            </p>
+            <div class="card p-8">
+                <h2 class="text-2xl font-semibold mb-6" style="color: #A52A2A;">My approach</h2>
+                <p class="text-gray-700 mb-4">
+                    I don't build AI for the sake of buzz. I build it to ship, improve, and stay useful over time. I prefer:
+                </p>
+                <ul class="space-y-3 text-gray-700 mb-6">
+                    <li>Testable experiments over assumptions</li>
+                    <li>Simpler tools used well, rather than exotic stacks no one maintains</li>
+                    <li>Transparent documentation that non-engineers can follow</li>
+                </ul>
 
-            <h2 class="text-3xl font-bold mb-4 mt-12" style="color: #A52A2A;">🧠 What I work on</h2>
-            <ul class="space-y-3 mb-8">
-                <li class="text-gray-700">Fine-tuning open-source LLMs (Mistral, DeepSeek, etc.) for business-specific use cases</li>
-                <li class="text-gray-700">Designing RAG pipelines using vector DBs, LangChain, and semantic search</li>
-                <li class="text-gray-700">Deploying LLMs on AWS, with scalability and cost in mind (SageMaker, ECR, Athena, S3)</li>
-                <li class="text-gray-700">Building AI agents that automate complex workflows like campaign mapping</li>
-                <li class="text-gray-700">Maintaining clean SQL pipelines for marketing, ecommerce, and funnel analytics</li>
-            </ul>
+                <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                    <p class="font-semibold text-gray-800 mb-3">Some results I'm proud of:</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>Reducing API inference cost by ~60% after fine-tuning</li>
+                        <li>Saving 30 minutes per analyst per day through LLM-powered mapping automation</li>
+                        <li>Improving decision speed with dashboards tied directly to modeled forecasts and churn signals</li>
+                    </ul>
+                </div>
 
-            <p class="text-gray-700 leading-relaxed mb-2">
-                When needed, I still reach for traditional ML, especially when a lean logistic regression or XGBoost model solves the problem just as well.
-            </p>
-            <p class="text-gray-700 italic mb-8">I currently specialize in the practical side of Generative AI.</p>
+                <p class="text-gray-700 italic mt-6 text-center">
+                    But most of all, I like when the people using what I build say: "This actually helped."
+                </p>
+            </div>
 
-            <h2 class="text-3xl font-bold mb-4 mt-12" style="color: #A52A2A;">📐 My approach</h2>
-            <p class="text-gray-700 leading-relaxed mb-4">
-                I don't build AI for the sake of buzz. I build it to ship, improve, and stay useful over time. I prefer:
-            </p>
-            <ul class="space-y-3 mb-6">
-                <li class="text-gray-700">Testable experiments over assumptions</li>
-                <li class="text-gray-700">Simpler tools used well, rather than exotic stacks no one maintains</li>
-                <li class="text-gray-700">Transparent documentation that non-engineers can follow</li>
-            </ul>
+            <div class="card p-8">
+                <h2 class="text-2xl font-semibold mb-6" style="color: #A52A2A;">Why I created fromdata2ai.com</h2>
+                <p class="text-gray-700 mb-4">
+                    This site is part portfolio, part lab notebook, part digital garden. It exists because I believe:
+                </p>
+                <ul class="space-y-3 text-gray-700 mb-6">
+                    <li>Good ideas become better when written down</li>
+                    <li>AI should be shared, questioned, improved; not hidden behind buzzwords</li>
+                    <li>The best learning happens when we build in the open</li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed">
+                    Here, I document the systems I'm building, the ideas I'm refining, and the trade-offs I'm constantly learning from. Whether it's fine-tuning a model for market prediction, embedding customer feedback into vector stores, or exploring how GenAI tools integrate with human workflows — I share the technical details and the design thinking behind them.
+                </p>
+            </div>
 
-            <p class="font-semibold text-gray-800 mb-3">Some results I'm proud of:</p>
-            <ul class="space-y-2 mb-6">
-                <li class="text-gray-700">✅ Reducing API inference cost by ~60% after fine-tuning</li>
-                <li class="text-gray-700">✅ Saving 30 minutes per analyst per day through LLM-powered mapping automation</li>
-                <li class="text-gray-700">✅ Improving decision speed with dashboards tied directly to modeled forecasts and churn signals</li>
-            </ul>
+            <div class="card p-8">
+                <h2 class="text-2xl font-semibold mb-6" style="color: #A52A2A;">A few things that shape how I think</h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li>I'm deeply curious about how information shapes decisions, especially in markets and in teams</li>
+                    <li>I believe data science is both a craft and a conversation, and clarity is part of our responsibility</li>
+                    <li>I enjoy systems that blend language, logic, and structure, from pipelines to prompts</li>
+                    <li>Outside work, I read sci-fi, study behavior, and reflect on how technology transforms how we relate to each other</li>
+                </ul>
+            </div>
 
-            <p class="text-gray-700 italic leading-relaxed mb-8">
-                But most of all, I like when the people using what I build say: "This actually helped."
-            </p>
-
-            <h2 class="text-3xl font-bold mb-4 mt-12" style="color: #A52A2A;">🌐 Why I created fromdata2ai.com</h2>
-            <p class="text-gray-700 leading-relaxed mb-4">
-                This site is part portfolio, part lab notebook, part digital garden. It exists because I believe:
-            </p>
-            <ul class="space-y-3 mb-6">
-                <li class="text-gray-700">Good ideas become better when written down</li>
-                <li class="text-gray-700">AI should be shared, questioned, improved; not hidden behind buzzwords</li>
-                <li class="text-gray-700">The best learning happens when we build in the open</li>
-            </ul>
-
-            <p class="text-gray-700 leading-relaxed mb-8">
-                Here, I document the systems I'm building, the ideas I'm refining, and the trade-offs I'm constantly learning from. Whether it's fine-tuning a model for market prediction, embedding customer feedback into vector stores, or exploring how GenAI tools integrate with human workflows — I share the technical details and the design thinking behind them.
-            </p>
-
-            <h2 class="text-3xl font-bold mb-4 mt-12" style="color: #A52A2A;">🧭 A few things that shape how I think</h2>
-            <ul class="space-y-3 mb-6">
-                <li class="text-gray-700">I'm deeply curious about how information shapes decisions, especially in markets and in teams</li>
-                <li class="text-gray-700">I believe data science is both a craft and a conversation, and clarity is part of our responsibility</li>
-                <li class="text-gray-700">I enjoy systems that blend language, logic, and structure, from pipelines to prompts</li>
-                <li class="text-gray-700">Outside work, I read sci-fi, study behavior, and reflect on how technology transforms how we relate to each other</li>
-            </ul>
-
-            <p class="text-gray-700 italic leading-relaxed text-center mt-12 text-lg">
-                If you're someone who cares about building AI that works — and keeps working, I hope this space brings you something useful.
-            </p>
-        </section>
+            <div class="text-center mt-12 p-8 bg-gray-50 rounded-lg">
+                <p class="text-gray-700 italic text-lg">
+                    If you're someone who cares about building AI that works — and keeps working, I hope this space brings you something useful.
+                </p>
+            </div>
+        </div>
     </main>
 
     <footer class="bg-gray-50 mt-16 py-8 border-t border-gray-200">
