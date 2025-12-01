@@ -18,6 +18,27 @@ header {
     padding: 40px 0;
     border-bottom: 1px solid #eee;
     margin-bottom: 40px;
+    position: relative;
+}
+
+.header-content {
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 30px auto 0;
+    display: block;
+    border: 3px solid #eee;
 }
 
 header h1 {
@@ -47,8 +68,10 @@ nav a {
     font-weight: 500;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
     text-decoration: underline;
+    font-weight: 600;
 }
 
 .social-links {
