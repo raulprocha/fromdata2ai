@@ -87,12 +87,42 @@ nav a.active {
 main {
     min-height: 400px;
     padding: 20px 0;
+    line-height: 1.8;
 }
 
 main h2 {
     font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #222;
+}
+
+main h3 {
+    font-size: 1.5em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+main p {
+    margin-bottom: 20px;
+    color: #444;
+}
+
+main ul {
+    margin: 20px 0 20px 30px;
+    color: #444;
+}
+
+main li {
+    margin-bottom: 12px;
+}
+
+main strong {
+    color: #222;
+}
+
+main em {
+    color: #666;
 }
 
 footer {
