@@ -87,43 +87,29 @@
     </style>
 </head>
 <body class="antialiased">
-
-    <div class="bg-white border-b border-gray-200 py-3">
-        <div class="container mx-auto px-6">
+    <header class="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="text-xl font-bold" style="color: #A52A2A;">From Data 2 AI</a>
+                <a href="index.html" class="text-2xl font-bold" style="color: #A52A2A;">From Data 2 AI</a>
                 <div class="flex items-center space-x-2">
-                    <a href="llm.html" class="site-nav-link">LLM</a>
+                    <a href="llm.html" class="nav-link">LLM</a>
                     <div class="dropdown">
-                        <a href="finetuning.html" class="site-nav-link">Fine Tuning ▾</a>
+                        <a href="finetuning.html" class="nav-link">Fine Tuning ▾</a>
                         <div class="dropdown-content">
                             <a href="seal.html">SEAL Framework</a>
                         </div>
+                    </div>
                     <div class="dropdown">
                         <a href="#" class="nav-link">RAG ▾</a>
                         <div class="dropdown-content">
                             <a href="rag-tutorial.html">AWS Bedrock RAG</a>
                         </div>
                     </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <header class="sticky top-0 bg-FDFBF8/80 backdrop-blur-md z-10 border-b border-F0EBE3">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-A52A2A">SEAL Framework Explorer</h1>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#analogy" class="nav-link">Analogy</a>
-                <a href="#deconstruction" class="nav-link">Deconstruction</a>
-                <a href="#framework" class="nav-link">Framework</a>
-                <a href="#science" class="nav-link font-semibold">The Science</a>
-                <a href="#showdown" class="nav-link">Showdown</a>
-                <a href="#critical-look" class="nav-link">Critical Look</a>
             </div>
         </nav>
     </header>
+
 
 
     <main class="container mx-auto px-6 py-12">
@@ -370,12 +356,32 @@
 
     </main>
 
-    <footer class="bg-F0EBE3/50 mt-16 py-6">
-        <div class="container mx-auto px-6 text-center text-gray-600">
-            <p>Interactive report generated based on the SEAL framework article.</p>
-            <p class="mt-2"><a href="index.html" class="text-A52A2A hover:underline">Back to From Data 2 AI</a></p>
+        <footer class="bg-gray-50 mt-16 py-8 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">From Data 2 AI</h3>
+                    <p class="text-gray-600 text-sm">ML, Generative AI, and LLM insights for real-world applications</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">Contact</h3>
+                    <p class="text-sm"><a href="mailto:raulrocha.rpr@gmail.com" class="text-gray-600 hover:text-gray-900">raulrocha.rpr@gmail.com</a></p>
+                    <p class="text-sm"><a href="https://www.linkedin.com/in/raulprocha/" target="_blank" class="text-gray-600 hover:text-gray-900">LinkedIn</a></p>
+                    <p class="text-sm"><a href="https://github.com/raulprocha" target="_blank" class="text-gray-600 hover:text-gray-900">GitHub</a></p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">Quick Links</h3>
+                    <p class="text-sm"><a href="llm.html" class="text-gray-600 hover:text-gray-900">LLM</a></p>
+                    <p class="text-sm"><a href="finetuning.html" class="text-gray-600 hover:text-gray-900">Fine Tuning</a></p>
+                    <p class="text-sm"><a href="rag-tutorial.html" class="text-gray-600 hover:text-gray-900">RAG Tutorial</a></p>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-300 text-center text-gray-600 text-sm">
+                <p>Built with ❤️ by Raul Rocha | AI/ML Specialist | Data Scientist | LLM Engineer</p>
+            </div>
         </div>
     </footer>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
