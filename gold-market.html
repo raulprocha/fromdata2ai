@@ -268,15 +268,15 @@ lora_config = LoraConfig(
 
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h4 class="font-semibold text-gray-800 mb-2">3. Sentiment Extraction</h4>
-                        <p class="text-sm text-gray-600 mb-2">FinBERT analyzes both original and rewritten headlines:</p>
+                        <p class="text-sm text-gray-600 mb-2">FinBERT analyzes the rewritten headline (which focuses on gold-correlated assets):</p>
                         <div class="code-block text-xs">
 <pre><code>{
-  "original_sentiment": "Positive",
-  "original_confidence": 0.87,
-  "rewritten_sentiment": "Positive", 
-  "rewritten_confidence": 0.94
+  "sentiment": "Positive",
+  "confidence": 0.94,
+  "context": "gold-focused rewrite"
 }</code></pre>
                         </div>
+                        <p class="text-xs text-gray-500 mt-2 italic">Note: Only the rewritten headline is analyzed, as it contains the gold market context.</p>
                     </div>
 
                     <div class="bg-gray-50 p-4 rounded-lg">
