@@ -233,6 +233,19 @@ lora_config = LoraConfig(
     lora_dropout=0.05,
     bias="none",
     task_type="CAUSAL_LM"
+)
+
+# Training Configuration
+training_args = TrainingArguments(
+    output_dir="./mistral-gold-lora",
+    num_train_epochs=3,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=4,
+    learning_rate=2e-4,
+    fp16=True,                    # Mixed precision
+    logging_steps=50,
+    save_strategy="epoch",
+    evaluation_strategy="epoch"
 )</code></pre>
                 </div>
 
@@ -249,11 +262,21 @@ lora_config = LoraConfig(
 <pre><code>Keywords: ["gold", "XAU", "precious metals", "Fed", "inflation", 
            "dollar", "treasury yields", "safe haven"]</code></pre>
                         </div>
+                        <div class="code-block text-xs mt-2">
+<pre><code class="language-python"># API Call Example
+news = alpaca.get_news(
+    symbols=["GLD", "IAU"],
+    start=datetime.now() - timedelta(hours=24),
+    limit=100
+)
+filtered = [n for n in news if any(kw in n.headline.lower() 
+            for kw in gold_keywords)]</code></pre>
+                        </div>
                     </div>
 
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h4 class="font-semibold text-gray-800 mb-2">2. Headline Rewriting</h4>
-                        <p class="text-sm text-gray-600 mb-2">Mistral-7B rewrites headlines to emphasize gold market impact:</p>
+                        <p class="text-sm text-gray-600 mb-2">Mistral-7B rewrites headlines based on the full article body, focusing on gold-correlated assets (USD, yields, Fed policy, etc.):</p>
                         <div class="grid md:grid-cols-2 gap-2 text-xs">
                             <div class="bg-white p-2 rounded">
                                 <p class="font-semibold text-gray-700">Original:</p>
@@ -272,8 +295,7 @@ lora_config = LoraConfig(
                         <div class="code-block text-xs">
 <pre><code>{
   "sentiment": "Positive",
-  "confidence": 0.94,
-  "context": "gold-focused rewrite"
+  "confidence": 0.94
 }</code></pre>
                         </div>
                         <p class="text-xs text-gray-500 mt-2 italic">Note: Only the rewritten headline is analyzed, as it contains the gold market context.</p>
@@ -282,13 +304,27 @@ lora_config = LoraConfig(
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h4 class="font-semibold text-gray-800 mb-2">4. Feature Engineering</h4>
                         <p class="text-sm text-gray-600 mb-2">Combine news sentiment with market data:</p>
-                        <ul class="list-disc list-inside text-xs text-gray-600 ml-4">
+                        <ul class="list-disc list-inside text-xs text-gray-600 ml-4 mb-2">
                             <li>XAU/USD price, volume, volatility (30-min candles)</li>
                             <li>Gold ETFs: GLD, IAU performance</li>
                             <li>USD Index (DXY) movements</li>
                             <li>10-year Treasury yields</li>
                             <li>Real yields (TIPS)</li>
                         </ul>
+                        <div class="code-block text-xs mt-2">
+<pre><code class="language-sql">-- Athena Query for Feature Aggregation
+SELECT 
+    news_timestamp,
+    AVG(sentiment_score) as avg_sentiment,
+    xau_close - LAG(xau_close, 1) as price_change,
+    dxy_close as dollar_strength,
+    treasury_10y as yield_level,
+    gld_volume / AVG(gld_volume) OVER (ORDER BY timestamp 
+        ROWS BETWEEN 20 PRECEDING AND CURRENT ROW) as volume_ratio
+FROM market_data
+WHERE timestamp BETWEEN news_timestamp - INTERVAL '2' HOUR 
+    AND news_timestamp</code></pre>
+                        </div>
                     </div>
                 </div>
 
@@ -326,6 +362,33 @@ lora_config = LoraConfig(
                     <p class="text-sm text-gray-700">
                         The model achieves <strong>100% JSON validity</strong> through careful prompt engineering and output parsing. This is critical for production systems where downstream processes expect structured data.
                     </p>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Inference Pipeline</h3>
+                <div class="code-block">
+<pre><code class="language-python"># Production Inference
+def predict_gold_movement(news_headline, market_features):
+    # Rewrite headline with gold context
+    rewritten = mistral_rewriter.generate(
+        f"Rewrite focusing on gold impact: {news_headline}"
+    )
+    
+    # Extract sentiment
+    sentiment = finbert(rewritten)
+    
+    # Combine features
+    features = {
+        "headline": rewritten,
+        "sentiment": sentiment["label"],
+        "confidence": sentiment["score"],
+        **market_features  # XAU price, DXY, yields, etc.
+    }
+    
+    # Generate prediction
+    prompt = format_prediction_prompt(features)
+    prediction = mistral_finetuned.generate(prompt)
+    
+    return json.loads(prediction)  # Structured output</code></pre>
                 </div>
             </div>
         </section>
