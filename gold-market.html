@@ -107,8 +107,8 @@
         <!-- Hero Section -->
         <section class="my-16 scroll-mt-20">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-2">Gold Market Prediction with LLMs</h2>
-                <p class="text-lg text-gray-600">Production-Ready ML Pipeline for Financial News Impact Analysis</p>
+                <h2 class="text-4xl font-bold mb-2">Financial News Impact Prediction</h2>
+                <p class="text-lg text-gray-600">Using LLMs to Predict Gold Market Movements from News Sentiment</p>
                 <div class="flex justify-center gap-2 flex-wrap mt-6">
                     <span class="tech-badge">Mistral-7B</span>
                     <span class="tech-badge">FinBERT</span>
@@ -200,10 +200,140 @@ News API → Headline Rewriting → Sentiment Analysis → Feature Engineering �
                 </div>
             </div>
         </section>
+
+        <!-- Technical Deep Dive -->
+        <section id="technical-deep-dive" class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">Technical Deep Dive</h2>
+                <p class="text-lg text-gray-600">Key implementation details and engineering decisions</p>
+            </div>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">LoRA Fine-tuning Strategy</h3>
+                <p class="text-gray-700 mb-4">
+                    Instead of fine-tuning all 7 billion parameters of Mistral, we use <strong>Low-Rank Adaptation (LoRA)</strong> which adds small trainable matrices to the model's attention layers.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <h4 class="font-semibold text-blue-900 mb-2">Why LoRA?</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4 text-sm">
+                        <li><strong>99% parameter reduction</strong>: Only ~4M trainable params vs 7B</li>
+                        <li><strong>90% cost savings</strong>: Smaller GPU memory requirements</li>
+                        <li><strong>Faster training</strong>: 3 epochs in ~2 hours on ml.g5.2xlarge</li>
+                        <li><strong>No catastrophic forgetting</strong>: Base model knowledge preserved</li>
+                    </ul>
+                </div>
+
+                <div class="code-block mb-6">
+<pre><code class="language-python"># LoRA Configuration
+lora_config = LoraConfig(
+    r=16,              # Rank of update matrices
+    lora_alpha=32,     # Scaling factor
+    target_modules=[   # Which layers to adapt
+        "q_proj", "k_proj", "v_proj", "o_proj"
+    ],
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM"
+)</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Data Pipeline Architecture</h3>
+                <p class="text-gray-700 mb-4">
+                    The system processes financial news through multiple stages, each adding value:
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">1. News Collection & Filtering</h4>
+                        <p class="text-sm text-gray-600 mb-2">Alpaca Markets API provides real-time financial news. We filter for gold-relevant keywords:</p>
+                        <div class="code-block text-xs">
+<pre><code>Keywords: ["gold", "XAU", "precious metals", "Fed", "inflation", 
+           "dollar", "treasury yields", "safe haven"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">2. Headline Rewriting</h4>
+                        <p class="text-sm text-gray-600 mb-2">Mistral-7B rewrites headlines to emphasize gold market impact:</p>
+                        <div class="grid md:grid-cols-2 gap-2 text-xs">
+                            <div class="bg-white p-2 rounded">
+                                <p class="font-semibold text-gray-700">Original:</p>
+                                <p class="text-gray-600">"Fed signals rate cuts in 2024"</p>
+                            </div>
+                            <div class="bg-white p-2 rounded">
+                                <p class="font-semibold text-gray-700">Rewritten:</p>
+                                <p class="text-gray-600">"Fed rate cut signals boost gold as safe haven demand rises"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">3. Sentiment Extraction</h4>
+                        <p class="text-sm text-gray-600 mb-2">FinBERT analyzes both original and rewritten headlines:</p>
+                        <div class="code-block text-xs">
+<pre><code>{
+  "original_sentiment": "Positive",
+  "original_confidence": 0.87,
+  "rewritten_sentiment": "Positive", 
+  "rewritten_confidence": 0.94
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">4. Feature Engineering</h4>
+                        <p class="text-sm text-gray-600 mb-2">Combine news sentiment with market data:</p>
+                        <ul class="list-disc list-inside text-xs text-gray-600 ml-4">
+                            <li>XAU/USD price, volume, volatility (30-min candles)</li>
+                            <li>Gold ETFs: GLD, IAU performance</li>
+                            <li>USD Index (DXY) movements</li>
+                            <li>10-year Treasury yields</li>
+                            <li>Real yields (TIPS)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Model Output Format</h3>
+                <p class="text-gray-700 mb-4">
+                    The fine-tuned model outputs structured JSON predictions for 4 time horizons:
+                </p>
+                <div class="code-block">
+<pre><code class="language-json">{
+  "6h": {
+    "direction": "Up",
+    "magnitude": "Medium",
+    "confidence": 0.82
+  },
+  "12h": {
+    "direction": "Up", 
+    "magnitude": "High",
+    "confidence": 0.76
+  },
+  "24h": {
+    "direction": "Neutral",
+    "magnitude": "Low",
+    "confidence": 0.65
+  },
+  "48h": {
+    "direction": "Down",
+    "magnitude": "Medium",
+    "confidence": 0.58
+  }
+}</code></pre>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-6">
+                    <p class="font-semibold text-yellow-900 mb-2">💡 Key Insight</p>
+                    <p class="text-sm text-gray-700">
+                        The model achieves <strong>100% JSON validity</strong> through careful prompt engineering and output parsing. This is critical for production systems where downstream processes expect structured data.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Performance -->
         <section id="performance" class="my-16 scroll-mt-20">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-2">Performance Metrics</h2>
+                <h2 class="text-4xl font-bold mb-2">Results & Performance</h2>
                 <p class="text-lg text-gray-600">Production results on real financial news data</p>
             </div>
             <div class="card p-8 max-w-4xl mx-auto">
@@ -266,7 +396,7 @@ News API → Headline Rewriting → Sentiment Analysis → Feature Engineering �
         <!-- Technical Details -->
         <section id="technical" class="my-16 scroll-mt-20">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-2">Technical Implementation</h2>
+                <h2 class="text-4xl font-bold mb-2">Models & Deployment</h2>
                 <p class="text-lg text-gray-600">Modern ML engineering practices</p>
             </div>
             <div class="card p-8 max-w-4xl mx-auto">
