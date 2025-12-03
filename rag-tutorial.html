@@ -501,33 +501,7 @@ manager.recreate_index()
 </code></pre>
             </div>
 
-            <h3 class="subsection-title">Type Hints & Documentation</h3>
-            <p class="text-gray-700 mb-4">
-                All code includes comprehensive type hints and docstrings:
-            </p>
-            <div class="code-block">
-<pre><code class="language-python">def invoke_agent(
-    self,
-    query: str,
-    agent_id: Optional[str] = None,
-    agent_alias_id: Optional[str] = None,
-    session_id: str = "default-session"
-) -> str:
-    """
-    Invoke Bedrock Agent with a query.
-    
-    Args:
-        query: User query text.
-        agent_id: Agent ID (uses config if not provided).
-        agent_alias_id: Agent alias ID (uses config if not provided).
-        session_id: Session ID for conversation continuity.
-        
-    Returns:
-        Complete response text from the agent.
-    """
-</code></pre>
             </div>
-        </div>
         </section>
 
         <!-- Performance & Optimization -->
