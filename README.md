@@ -1,80 +1,129 @@
 # From Data 2 AI
 
-Site pessoal sobre Machine Learning, Generative AI e LLM.
+Personal website about Machine Learning, Generative AI, and LLMs.
 
-## 🚀 Deploy no GitHub Pages
+🌐 **Live at:** [fromdata2ai.com](https://fromdata2ai.com)
 
-### Passo 1: Criar repositório no GitHub
-1. Acesse https://github.com/new
-2. Nome do repositório: `fromdata2ai` (ou o nome que preferir)
-3. Deixe como público
-4. Não inicialize com README (já temos um)
+## 📚 Content
 
-### Passo 2: Fazer push do código
+### LLM
+Insights and practical applications of Large Language Models in production environments.
+
+### Fine Tuning
+- **Overview**: Strategies and best practices for fine-tuning LLMs
+- **SEAL Framework**: Comprehensive guide to evaluating Augmented Language Models
+
+### RAG (Retrieval Augmented Generation)
+- **AWS Bedrock RAG**: Complete tutorial on building production-ready RAG systems with:
+  - Hierarchical chunking strategies
+  - FAISS vector search with OpenSearch Serverless
+  - Bedrock Agents for automatic RAG
+  - Infrastructure as Code with Terraform
+  - Performance benchmarks and cost analysis
+
+## 🏗️ Project Structure
+
+```
+fromdata2ai/
+├── index.html              # Home page
+├── llm.html               # LLM insights
+├── finetuning.html        # Fine-tuning overview
+├── seal.html              # SEAL Framework deep dive
+├── rag-tutorial.html      # AWS Bedrock RAG tutorial
+├── images/                # Images and assets
+│   ├── profile.jpg
+│   ├── favicon.png
+│   └── favicon.ico
+└── README.md              # This file
+```
+
+## 🚀 Deployment
+
+This site is deployed using **GitHub Pages** with a custom domain.
+
+### GitHub Pages Setup
+
+1. **Repository Settings** → **Pages**
+2. **Source**: Deploy from a branch
+3. **Branch**: `main` / `(root)`
+4. **Custom domain**: `fromdata2ai.com`
+5. **Enforce HTTPS**: ✅ Enabled
+
+### Custom Domain Configuration
+
+DNS records configured at domain provider:
+
+**CNAME Record:**
+```
+www → raulprocha.github.io
+```
+
+**A Records (for root domain):**
+```
+@ → 185.199.108.153
+@ → 185.199.109.153
+@ → 185.199.110.153
+@ → 185.199.111.153
+```
+
+## 🛠️ Technology Stack
+
+- **Frontend**: HTML5, Tailwind CSS
+- **Syntax Highlighting**: Prism.js (for code examples)
+- **Charts**: Chart.js (for SEAL visualizations)
+- **Hosting**: GitHub Pages
+- **Domain**: Custom domain with HTTPS
+
+## ✏️ Editing Content
+
+All pages use consistent styling with:
+- **Color scheme**: `#A52A2A` (primary), `#FDFBF8` (background)
+- **Typography**: Inter font family
+- **Components**: Cards, dropdowns, responsive navigation
+
+To update content:
+
 ```bash
-cd /home/raul.rocha/my-github/fromdata2ai-github
+# Edit HTML files
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/fromdata2ai.git
-git push -u origin main
+git commit -m "Update content"
+git push origin main
 ```
 
-### Passo 3: Ativar GitHub Pages
-1. Vá em Settings > Pages
-2. Em "Source", selecione "Deploy from a branch"
-3. Em "Branch", selecione "main" e pasta "/ (root)"
-4. Clique em Save
+GitHub Pages automatically rebuilds the site in ~1-2 minutes.
 
-Seu site estará disponível em: `https://SEU-USUARIO.github.io/fromdata2ai/`
+## 🎨 Design Features
 
-### Passo 4: Configurar domínio customizado (opcional)
-1. No seu provedor de domínio (onde comprou fromdata2ai.com), adicione:
-   - Tipo: CNAME
-   - Nome: www
-   - Valor: SEU-USUARIO.github.io
-   
-2. Adicione também registros A para o domínio raiz:
-   ```
-   185.199.108.153
-   185.199.109.153
-   185.199.110.153
-   185.199.111.153
-   ```
+- ✅ Responsive design (mobile-friendly)
+- ✅ Sticky navigation header
+- ✅ Dropdown menus for organized content
+- ✅ Hover effects on cards and links
+- ✅ Syntax highlighting for code blocks
+- ✅ Professional footer with contact links
 
-3. No GitHub Pages Settings, adicione seu domínio customizado: `fromdata2ai.com`
-4. Marque "Enforce HTTPS"
+## 📊 Performance
 
-## 📝 Estrutura do Projeto
+- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
+- **Load Time**: < 2 seconds
+- **Mobile Optimized**: Yes
+- **HTTPS**: Enforced
 
-```
-fromdata2ai-github/
-├── index.html          # Página principal (LLM)
-├── finetuning.html     # Página Fine Tuning
-├── css/
-│   └── style.css       # Estilos
-└── README.md           # Este arquivo
-```
+## 💰 Cost
 
-## ✏️ Como editar o conteúdo
+- **GitHub Pages**: Free
+- **Custom Domain**: ~$10-15/year
+- **Total**: ~$1.25/month
 
-Edite os arquivos HTML diretamente. O conteúdo principal está na tag `<section id="content">`.
+## 📧 Contact
 
-Após editar, faça commit e push:
-```bash
-git add .
-git commit -m "Atualizar conteúdo"
-git push
-```
+- **Email**: [raulrocha.rpr@gmail.com](mailto:raulrocha.rpr@gmail.com)
+- **LinkedIn**: [linkedin.com/in/raulprocha](https://www.linkedin.com/in/raulprocha/)
+- **GitHub**: [github.com/raulprocha](https://github.com/raulprocha)
 
-O site será atualizado automaticamente em alguns minutos.
+## 📝 License
 
-## 💰 Custo
+Content © 2025 Raul Rocha. All rights reserved.
 
-- GitHub Pages: **Gratuito**
-- Domínio customizado: Apenas o custo anual do domínio (~$10-15/ano)
+---
 
-## 📧 Contato
-
-- Email: raulrocha.rpr@gmail.com
-- LinkedIn: https://www.linkedin.com/in/raulprocha/
+**Built with ❤️ by Raul Rocha | AI/ML Specialist | Data Scientist | LLM Engineer**
