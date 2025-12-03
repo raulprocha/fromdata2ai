@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Insights & Best Practices - From Data 2 AI</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FDFBF8; color: #3f3c3a; }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #F0EBE3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+            color: #78716c;
+            padding: 0.5rem 1rem;
+        }
+        .nav-link:hover {
+            color: #A52A2A;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 0.5rem;
+            margin-top: 0.25rem;
+            padding: 0.5rem 0;
+            border: 1px solid #F0EBE3;
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+        .dropdown-content a {
+            color: #78716c;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #F0EBE3;
+            color: #A52A2A;
+        }
+        .tech-badge {
+            display: inline-block;
+            background-color: #F0EBE3;
+            color: #A52A2A;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold" style="color: #A52A2A;">From Data 2 AI</a>
+                <div class="flex items-center space-x-2">
+                    <a href="llm.html" class="nav-link">LLM</a>
+                    <div class="dropdown">
+                        <a href="finetuning.html" class="nav-link">Fine Tuning ▾</a>
+                        <div class="dropdown-content">
+                            <a href="seal.html">SEAL Framework</a>
+                            <a href="gold-market.html">Gold Market Prediction</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <span class="nav-link cursor-pointer">RAG ▾</span>
+                        <div class="dropdown-content">
+                            <a href="rag-tutorial.html">Implementation Guide</a>
+                            <a href="rag-insights.html">Insights & Best Practices</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">RAG Insights & Best Practices</h2>
+                <p class="text-lg text-gray-600">Key findings from AWS Bedrock documentation and real-world implementation</p>
+                <div class="flex justify-center gap-2 flex-wrap mt-6">
+                    <span class="tech-badge">Chunking Strategies</span>
+                    <span class="tech-badge">Semantic Search</span>
+                    <span class="tech-badge">Multimodal RAG</span>
+                    <span class="tech-badge">Best Practices</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chunking Strategies -->
+        <section id="chunking" class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">Chunking Strategies Deep Dive</h2>
+                <p class="text-lg text-gray-600">Understanding different approaches and when to use each</p>
+            </div>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    Amazon Bedrock Knowledge Bases supports <strong>four main chunking strategies</strong>, each optimized for different use cases:
+                </p>
+
+                <div class="space-y-6">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-900 mb-3">1. Default Chunking</h3>
+                        <p class="text-gray-700 mb-2"><strong>How it works:</strong> Splits content into chunks of around 300 tokens, preserving complete sentences within each chunk.</p>
+                        <p class="text-gray-700 mb-2"><strong>Best for:</strong> General-purpose RAG applications, balanced performance</p>
+                        <p class="text-gray-700"><strong>Trade-off:</strong> Good balance between context and precision, but may lose some semantic coherence</p>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-900 mb-3">2. Fixed-Size Chunking</h3>
+                        <p class="text-gray-700 mb-2"><strong>How it works:</strong> Configure exact chunk size (tokens) and overlap percentage between consecutive chunks.</p>
+                        <p class="text-gray-700 mb-2"><strong>Best for:</strong> When you need predictable chunk sizes, technical documentation</p>
+                        <p class="text-gray-700"><strong>Trade-off:</strong> Maximum control but may split sentences mid-way</p>
+                    </div>
+
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-purple-900 mb-3">3. Hierarchical Chunking ⭐</h3>
+                        <p class="text-gray-700 mb-2"><strong>How it works:</strong> Creates parent chunks (1500 tokens) and child chunks (300 tokens). Searches in child chunks but returns parent chunks for context.</p>
+                        <p class="text-gray-700 mb-2"><strong>Best for:</strong> Complex documents, when context is critical (our implementation uses this!)</p>
+                        <p class="text-gray-700"><strong>Trade-off:</strong> Best accuracy and context, slightly more complex setup</p>
+                        <div class="bg-white p-4 rounded mt-4">
+                            <p class="text-sm font-semibold text-purple-900 mb-2">💡 Why we chose this:</p>
+                            <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                                <li>Precision: Child chunks find exact matches</li>
+                                <li>Context: Parent chunks provide full picture</li>
+                                <li>Best of both worlds: Accurate retrieval + comprehensive answers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-orange-900 mb-3">4. Semantic Chunking</h3>
+                        <p class="text-gray-700 mb-2"><strong>How it works:</strong> Uses NLP to split at semantic boundaries (topic changes) rather than fixed sizes. Configurable: max tokens, buffer size, breakpoint threshold.</p>
+                        <p class="text-gray-700 mb-2"><strong>Best for:</strong> Long-form content, articles, books where topics flow naturally</p>
+                        <p class="text-gray-700"><strong>Trade-off:</strong> Most intelligent splitting but variable chunk sizes</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">5. No Chunking</h3>
+                        <p class="text-gray-700 mb-2"><strong>How it works:</strong> Treats each document as a single chunk.</p>
+                        <p class="text-gray-700 mb-2"><strong>Best for:</strong> Short documents, when full context is always needed</p>
+                        <p class="text-gray-700"><strong>Trade-off:</strong> Simple but limited to small documents (token limits apply)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Multimodal RAG -->
+        <section id="multimodal" class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">Multimodal RAG</h2>
+                <p class="text-lg text-gray-600">Beyond text: images, audio, and video in RAG systems</p>
+            </div>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    Bedrock Knowledge Bases supports multimodal content through two distinct approaches:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-900 mb-3">Nova Multimodal Embeddings</h3>
+                        <p class="text-sm text-gray-700 mb-4">Direct embedding of multimedia files without text conversion</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>✅ Visual similarity search</li>
+                            <li>✅ Image-based queries</li>
+                            <li>✅ Preserves visual information</li>
+                            <li>⚙️ Configure chunk duration (1-30s for audio/video)</li>
+                        </ul>
+                        <div class="bg-white p-3 rounded mt-4">
+                            <p class="text-xs font-semibold text-blue-900 mb-1">Best for:</p>
+                            <p class="text-xs text-gray-600">Product catalogs, image discovery, visual search</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-900 mb-3">Bedrock Data Automation</h3>
+                        <p class="text-sm text-gray-700 mb-4">Converts multimedia to text first, then embeds</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>✅ Audio transcription (speech-to-text)</li>
+                            <li>✅ Video scene descriptions</li>
+                            <li>✅ Image OCR + visual content extraction</li>
+                            <li>✅ Works with existing text-based RAG</li>
+                        </ul>
+                        <div class="bg-white p-3 rounded mt-4">
+                            <p class="text-xs font-semibold text-green-900 mb-1">Best for:</p>
+                            <p class="text-xs text-gray-600">Meeting recordings, training videos, customer support calls</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                    <p class="font-semibold text-yellow-900 mb-2">💡 Key Decision</p>
+                    <p class="text-sm text-gray-700">
+                        Choose <strong>Nova</strong> when visual features matter (product images, diagrams). Choose <strong>BDA</strong> when speech/text content matters (videos, audio recordings).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices" class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">Production Best Practices</h2>
+                <p class="text-lg text-gray-600">Lessons learned from real-world implementations</p>
+            </div>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3" style="color: #A52A2A;">1. Retrieval Optimization</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li><strong>Start with 3-5 chunks</strong>: More isn't always better—can confuse the LLM</li>
+                            <li><strong>Monitor retrieval scores</strong>: Below 0.3 usually indicates poor match</li>
+                            <li><strong>Use metadata filtering</strong>: Essential for large document sets</li>
+                            <li><strong>Test with diverse queries</strong>: Validate coverage across topics</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3" style="color: #A52A2A;">2. Document Preparation</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li><strong>Clean PDFs work best</strong>: Avoid scanned images without OCR</li>
+                            <li><strong>Structure with clear headings</strong>: Helps semantic chunking</li>
+                            <li><strong>Remove unnecessary formatting</strong>: Focus on content</li>
+                            <li><strong>Keep files reasonable</strong>: <100MB per file for best performance</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3" style="color: #A52A2A;">3. Cost Management</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li><strong>OpenSearch Serverless is the main cost</strong>: ~$175/month for 2 OCUs</li>
+                            <li><strong>Delete when not in use</strong>: Save costs during development</li>
+                            <li><strong>Batch document processing</strong>: Minimize ingestion jobs</li>
+                            <li><strong>Use S3 Intelligent-Tiering</strong>: Optimize storage costs</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3" style="color: #A52A2A;">4. Testing Strategy</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li><strong>Create test suite</strong>: Known questions + expected answers</li>
+                            <li><strong>Test edge cases</strong>: Ambiguous queries, out-of-scope questions</li>
+                            <li><strong>Monitor quality over time</strong>: Track response accuracy</li>
+                            <li><strong>A/B test chunking strategies</strong>: Find what works for your data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-lg mt-8">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">Real-World Performance Tips</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="font-semibold text-blue-900 mb-2">✅ Do:</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Use hierarchical chunking for complex docs</li>
+                                <li>• Enable CloudWatch logging</li>
+                                <li>• Version your documents in S3</li>
+                                <li>• Test with real user queries</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-blue-900 mb-2">❌ Avoid:</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Retrieving too many chunks (>10)</li>
+                                <li>• Ignoring retrieval scores</li>
+                                <li>• Skipping document preprocessing</li>
+                                <li>• Forgetting to monitor costs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section id="takeaways" class="my-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-2">Key Takeaways</h2>
+                <p class="text-lg text-gray-600">Essential insights for building production RAG systems</p>
+            </div>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-purple-900 mb-3">🎯 Chunking</h4>
+                        <p class="text-sm text-gray-700">Hierarchical chunking provides the best balance of precision and context for most use cases</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-blue-900 mb-3">🔍 Search</h4>
+                        <p class="text-sm text-gray-700">FAISS with HNSW algorithm offers sub-millisecond similarity search at scale</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-green-900 mb-3">📊 Multimodal</h4>
+                        <p class="text-sm text-gray-700">Choose Nova for visual search, BDA for speech/text extraction from multimedia</p>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-orange-900 mb-3">💰 Costs</h4>
+                        <p class="text-sm text-gray-700">OpenSearch Serverless is the main cost driver—manage OCUs carefully</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <a href="rag-tutorial.html" class="inline-block bg-[#A52A2A] text-white px-6 py-3 rounded-lg hover:bg-[#8B2323] transition-colors">
+                        View Implementation Guide →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-50 mt-16 py-8 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">From Data 2 AI</h3>
+                    <p class="text-gray-600 text-sm">ML, Generative AI, and LLM insights for real-world applications</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">Contact</h3>
+                    <p class="text-sm"><a href="mailto:raulrocha.rpr@gmail.com" class="text-gray-600 hover:text-gray-900">raulrocha.rpr@gmail.com</a></p>
+                    <p class="text-sm"><a href="https://www.linkedin.com/in/raulprocha/" target="_blank" class="text-gray-600 hover:text-gray-900">LinkedIn</a></p>
+                    <p class="text-sm"><a href="https://github.com/raulprocha" target="_blank" class="text-gray-600 hover:text-gray-900">GitHub</a></p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-3" style="color: #A52A2A;">Quick Links</h3>
+                    <p class="text-sm"><a href="llm.html" class="text-gray-600 hover:text-gray-900">LLM</a></p>
+                    <p class="text-sm"><a href="finetuning.html" class="text-gray-600 hover:text-gray-900">Fine Tuning</a></p>
+                    <p class="text-sm"><a href="rag-tutorial.html" class="text-gray-600 hover:text-gray-900">RAG Tutorial</a></p>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-300 text-center text-gray-600 text-sm">
+                <p>Built with ❤️ by Raul Rocha | AI/ML Specialist | Data Scientist | LLM Engineer</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
