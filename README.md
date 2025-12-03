@@ -127,3 +127,51 @@ Content © 2025 Raul Rocha. All rights reserved.
 ---
 
 **Built with ❤️ by Raul Rocha | AI/ML Specialist | Data Scientist | LLM Engineer**
+
+## 🔄 Development Workflow
+
+### Branch Strategy
+
+- **main**: Production branch (live at fromdata2ai.com)
+- **develop**: Development branch (for review before going live)
+
+### Making Changes
+
+1. **Work on develop branch**:
+```bash
+git checkout develop
+# Make your changes
+git add .
+git commit -m "Your changes"
+git push origin develop
+```
+
+2. **Review changes**:
+   - Test locally or on develop preview
+   - Review all changes
+
+3. **Merge to main** (after approval):
+```bash
+git checkout main
+git merge develop
+git push origin main
+```
+
+GitHub Pages will automatically rebuild from main branch.
+
+### Quick Commands
+
+```bash
+# Switch to develop
+git checkout develop
+
+# Switch to main
+git checkout main
+
+# See current branch
+git branch
+
+# See all changes
+git status
+```
+
