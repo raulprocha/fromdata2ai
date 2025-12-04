@@ -145,7 +145,7 @@
                     This project demonstrates a production-ready ML pipeline that predicts gold market movements by analyzing financial news using Large Language Models. It combines fine-tuned Mistral-7B with FinBERT sentiment analysis to generate trading signals across multiple time horizons.
                 </p>
                 
-                <h3 class="text-2xl font-semibold mb-4 mt-6" style="color: #A52A2A;">Business Value</h3>
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Business Value</h3>
                 <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
                     <li><strong>Automated Trading Signals</strong>: Predict gold price direction and magnitude from financial news</li>
                     <li><strong>Multi-Horizon Forecasting</strong>: 6h, 12h, 24h, and 48h prediction windows</li>
@@ -153,7 +153,7 @@
                     <li><strong>Cost-Effective</strong>: LoRA fine-tuning reduces training costs by 90%</li>
                 </ul>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-6" style="color: #A52A2A;">Key Features</h3>
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Key Features</h3>
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h4 class="font-semibold text-gray-800 mb-2">🤖 Fine-tuned Mistral-7B</h4>
@@ -225,16 +225,13 @@ News API → Headline Rewriting → Sentiment Analysis → Feature Engineering �
         <!-- Technical Deep Dive -->
         <section id="technical-deep-dive" class="my-16 scroll-mt-20">
             <div class="card p-8">
-                <div class="card p-8 max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Technical Deep Dive</h2>
+                    <p class="text-lg text-gray-600">Key implementation details and engineering decisions</p>
+                </div>
 
-                    <div class="text-center mb-12">
-
-                        <h2 class="text-4xl font-bold mb-2">Technical Deep Dive</h2>
-
-                        <p class="text-lg text-gray-600">Key implementation details and engineering decisions</p>
-
-                    </div>
-                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">LoRA Fine-tuning Strategy</h3>
+                <div class="card p-8 max-w-4xl mx-auto mb-8">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">LoRA Fine-tuning Strategy</h3>
                 <p class="text-gray-700 mb-4">
                     Instead of fine-tuning all 7 billion parameters of Mistral, we use <strong>Low-Rank Adaptation (LoRA)</strong> which adds small trainable matrices to the model's attention layers.
                 </p>
@@ -274,8 +271,10 @@ training_args = TrainingArguments(
     evaluation_strategy="epoch"
 )</code></pre>
                 </div>
+            </div>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Data Pipeline Architecture</h3>
+            <div class="card p-8 max-w-4xl mx-auto mb-8">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Data Pipeline Architecture</h3>
                 <p class="text-gray-700 mb-4">
                     The system processes financial news through multiple stages, each adding value:
                 </p>
@@ -353,8 +352,10 @@ WHERE timestamp BETWEEN news_timestamp - INTERVAL '2' HOUR
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Model Output Format</h3>
+            <div class="card p-8 max-w-4xl mx-auto mb-8">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Model Output Format</h3>
                 <p class="text-gray-700 mb-4">
                     The fine-tuned model outputs structured JSON predictions for 4 time horizons:
                 </p>
@@ -389,8 +390,10 @@ WHERE timestamp BETWEEN news_timestamp - INTERVAL '2' HOUR
                         The model achieves <strong>100% JSON validity</strong> through careful prompt engineering and output parsing. This is critical for production systems where downstream processes expect structured data.
                     </p>
                 </div>
+            </div>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-8" style="color: #A52A2A;">Inference Pipeline</h3>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Inference Pipeline</h3>
                 <div class="code-block">
 <pre><code class="language-python"># Production Inference
 def predict_gold_movement(news_headline, market_features):
@@ -422,15 +425,12 @@ def predict_gold_movement(news_headline, market_features):
         <!-- Performance -->
         <section id="performance" class="my-16 scroll-mt-20">
             <div class="card p-8">
-                <div class="card p-8 max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Results & Performance</h2>
+                    <p class="text-lg text-gray-600">Production results on real financial news data</p>
+                </div>
 
-                    <div class="text-center mb-12">
-
-                        <h2 class="text-4xl font-bold mb-2">Results & Performance</h2>
-
-                        <p class="text-lg text-gray-600">Production results on real financial news data</p>
-
-                    </div>
+                <div class="card p-8 max-w-4xl mx-auto mb-8">
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-green-50 p-6 rounded-lg text-center">
                         <p class="text-4xl font-bold text-green-700 mb-2">0.90</p>
@@ -449,8 +449,10 @@ def predict_gold_movement(news_headline, market_features):
                         <p class="text-sm text-gray-600">News/Hour Processing</p>
                     </div>
                 </div>
+            </div>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-6" style="color: #A52A2A;">Cost Analysis</h3>
+            <div class="card p-8 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Cost Analysis</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
                         <thead class="bg-gray-50">
@@ -521,7 +523,7 @@ def predict_gold_movement(news_headline, market_features):
                     </ul>
                 </div>
 
-                <h3 class="text-2xl font-semibold mb-4 mt-6" style="color: #A52A2A;">Use Cases</h3>
+                <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Use Cases</h3>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="bg-blue-50 p-4 rounded-lg">
                         <h4 class="font-semibold text-blue-900 mb-2">Algorithmic Trading</h4>
