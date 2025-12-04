@@ -306,6 +306,205 @@
             </div>
         </section>
 
+        <!-- Technical Deep Dive from Bedrock Documentation -->
+        <section id="technical-details" class="my-16 scroll-mt-20">
+            <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Technical Deep Dive</h2>
+                    <p class="text-lg text-gray-600">Insights from AWS Bedrock documentation and production systems</p>
+                </div>
+
+                <div class="card p-8 max-w-4xl mx-auto mb-8">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Vector Embeddings Architecture</h3>
+                    <p class="text-gray-700 mb-4">
+                        Vector embeddings are the foundation of semantic search in RAG systems. They convert text chunks into numerical representations that enable mathematical comparison.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-900 mb-2">Float32 Vectors (Default)</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• 32 bits per dimension</li>
+                                <li>• Higher precision</li>
+                                <li>• Standard for most models</li>
+                                <li>• Larger storage requirements</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-900 mb-2">Binary Vectors</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• 1 bit per dimension</li>
+                                <li>• 32x storage reduction</li>
+                                <li>• Faster similarity search</li>
+                                <li>• Requires compatible models</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                        <p class="font-semibold text-yellow-900 mb-2">💡 Production Tip</p>
+                        <p class="text-sm text-gray-700">
+                            Binary vectors can reduce storage costs by 97% while maintaining acceptable accuracy for most use cases. Consider them for large-scale deployments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card p-8 max-w-4xl mx-auto mb-8">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">RAG Evaluation Metrics</h3>
+                    <p class="text-gray-700 mb-4">
+                        AWS Bedrock provides built-in metrics to evaluate RAG system performance across two dimensions: retrieval quality and generation quality.
+                    </p>
+
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold mb-3" style="color: #A52A2A;">Retrieve-Only Metrics</h4>
+                        <div class="space-y-3">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-1">Context Relevance</p>
+                                <p class="text-sm text-gray-600">Measures how contextually relevant the retrieved texts are to the questions. Essential for ensuring your vector search is finding the right content.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-1">Context Coverage</p>
+                                <p class="text-sm text-gray-600">Measures how much the retrieved texts cover all information in ground truth. Requires ground truth data in your evaluation dataset.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold mb-3" style="color: #A52A2A;">Retrieve-and-Generate Metrics</h4>
+                        <div class="space-y-3">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-1">Correctness</p>
+                                <p class="text-sm text-gray-600">Measures how accurate the responses are in answering questions. The most critical metric for production systems.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-1">Completeness</p>
+                                <p class="text-sm text-gray-600">Measures how well responses answer and resolve all aspects of questions. Prevents partial or incomplete answers.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-1">Helpfulness</p>
+                                <p class="text-sm text-gray-600">Holistic measure of how useful responses are. Combines accuracy, completeness, and user satisfaction.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-semibold text-blue-900 mb-2">📊 Supported Evaluator Models</p>
+                        <div class="grid md:grid-cols-2 gap-2 text-sm text-gray-700">
+                            <ul class="space-y-1">
+                                <li>• Amazon Nova Pro</li>
+                                <li>• Claude 3.5 Sonnet (v1, v2)</li>
+                                <li>• Claude 3.7 Sonnet</li>
+                                <li>• Claude 3 Haiku & 3.5 Haiku</li>
+                            </ul>
+                            <ul class="space-y-1">
+                                <li>• Meta Llama 3.1 70B</li>
+                                <li>• Meta Llama 3.3 70B</li>
+                                <li>• Mistral Large</li>
+                                <li>• Cross-Region inference profiles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-8 max-w-4xl mx-auto mb-8">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">GraphRAG with Amazon Neptune</h3>
+                    <p class="text-gray-700 mb-4">
+                        GraphRAG combines graph modeling with generative AI to enhance RAG by leveraging relationships between entities and structural elements within documents.
+                    </p>
+
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-semibold text-purple-900 mb-2">How GraphRAG Works</h4>
+                        <ol class="text-sm text-gray-700 space-y-2 ml-4 list-decimal">
+                            <li>Performs initial vector search for relevant nodes</li>
+                            <li>Retrieves related graph nodes linked to document chunks</li>
+                            <li>Expands by traversing the graph and retrieving details</li>
+                            <li>Provides enriched context by understanding entities and connections</li>
+                        </ol>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">✅ Benefits</p>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• More comprehensive responses</li>
+                                <li>• Better cross-document reasoning</li>
+                                <li>• Enhanced multi-hop queries</li>
+                                <li>• Reduced hallucinations</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">⚠️ Limitations</p>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• S3-only data sources</li>
+                                <li>• 1000 files per data source</li>
+                                <li>• No autoscaling support</li>
+                                <li>• Claude 3 Haiku for graph building</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 mb-2">🌍 Available Regions</p>
+                        <p class="text-sm text-gray-700">US East (N. Virginia), US West (Oregon), Europe (Frankfurt, London, Ireland), Asia Pacific (Tokyo, Singapore)</p>
+                    </div>
+                </div>
+
+                <div class="card p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #A52A2A;">Pre-processing Pipeline</h3>
+                    <p class="text-gray-700 mb-4">
+                        Understanding the data transformation pipeline is crucial for optimizing RAG performance.
+                    </p>
+
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">1</div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Document Ingestion</p>
+                                    <p class="text-sm text-gray-600">Convert unstructured data to text format</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">2</div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Chunking</p>
+                                    <p class="text-sm text-gray-600">Split into manageable pieces (hierarchical, fixed-size, semantic)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">3</div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Embedding Generation</p>
+                                    <p class="text-sm text-gray-600">Convert chunks to vector embeddings using Titan or other models</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">4</div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Vector Storage</p>
+                                    <p class="text-sm text-gray-600">Write to vector index (OpenSearch, FAISS) with document mapping</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">5</div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Semantic Search</p>
+                                    <p class="text-sm text-gray-600">Query embeddings find similar vectors for retrieval</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                        <p class="font-semibold text-yellow-900 mb-2">🔑 Key Insight</p>
+                        <p class="text-sm text-gray-700">
+                            The quality of your RAG system is directly tied to your chunking strategy and embedding model choice. Hierarchical chunking with Titan embeddings provides the best balance for most production use cases.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Key Takeaways -->
         <section id="takeaways" class="my-16 scroll-mt-20">
             <div class="card p-8">
