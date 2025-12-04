@@ -110,10 +110,14 @@
             </div>
         </section>
 
-        <section id="introduction" class="my-16 scroll-mt-20">
+        <section id="intro-content" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Introduction</h2>
+                    <p class="text-lg text-gray-600">Core concepts and implementation overview</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-                    <h2 class="section-title">Introduction</h2>
             <p class="text-gray-700 leading-relaxed mb-4">
                 Retrieval Augmented Generation (RAG) has become the de facto standard for building AI systems that need to answer questions based on your own documents. But moving from a proof-of-concept to a production-ready system involves many decisions: chunking strategies, vector databases, embedding models, and infrastructure.
             </p>
@@ -142,10 +146,14 @@
         </section>
 
         <!-- Architecture Section -->
-        <section id="Architecture Section" class="my-16 scroll-mt-20">
+        <section id="architecture" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">System Architecture</h2>
+                    <p class="text-lg text-gray-600">End-to-end pipeline design</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">System Architecture</h2>
             <p class="text-gray-700 leading-relaxed mb-6">
                 Our RAG system follows a multi-stage pipeline that transforms documents into semantic vectors, stores them efficiently, and retrieves relevant context for generation.
             </p>
@@ -199,10 +207,14 @@
         </section>
 
         <!-- Understanding RAG -->
-        <section id="Understanding RAG" class="my-16 scroll-mt-20">
+        <section id="understanding-rag" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Understanding RAG</h2>
+                    <p class="text-lg text-gray-600">How retrieval augmented generation works</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Understanding RAG</h2>
             
             <h3 class="subsection-title">The Problem RAG Solves</h3>
             <p class="text-gray-700 leading-relaxed mb-4">
@@ -276,10 +288,14 @@
         </section>
 
         <!-- Hierarchical Chunking -->
-        <section id="Hierarchical Chunking" class="my-16 scroll-mt-20">
+        <section id="hierarchical-chunking" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Hierarchical Chunking: The Secret Sauce</h2>
+                    <p class="text-lg text-gray-600">Advanced chunking strategy for better context</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Hierarchical Chunking: The Secret Sauce</h2>
             
             <p class="text-gray-700 leading-relaxed mb-4">
                 Most RAG systems use fixed-size chunking (e.g., 512 tokens per chunk). This works, but has a critical flaw: <strong>you lose context</strong>.
@@ -354,10 +370,14 @@
         </section>
 
         <!-- Implementation Guide -->
-        <section id="Implementation Guide" class="my-16 scroll-mt-20">
+        <section id="implementation" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Implementation Guide</h2>
+                    <p class="text-lg text-gray-600">Step-by-step deployment instructions</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Implementation Guide</h2>
             
             <h3 class="subsection-title">Prerequisites</h3>
             <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-6">
@@ -443,10 +463,14 @@ python cli.py "What are the main features of Amazon Bedrock?"</code></pre>
         </section>
 
         <!-- Code Deep Dive -->
-        <section id="Code Deep Dive" class="my-16 scroll-mt-20">
+        <section id="code-dive" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Code Deep Dive</h2>
+                    <p class="text-lg text-gray-600">Key implementation details</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Code Deep Dive</h2>
             
             <h3 class="subsection-title">BedrockClient: High-Level API</h3>
             <p class="text-gray-700 mb-4">
@@ -526,10 +550,14 @@ manager.recreate_index()
         </section>
 
         <!-- Performance & Optimization -->
-        <section id="Performance & Optimization" class="my-16 scroll-mt-20">
+        <section id="performance" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Performance & Optimization</h2>
+                    <p class="text-lg text-gray-600">Tuning for production workloads</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Performance & Optimization</h2>
             
             <h3 class="subsection-title">Benchmarks</h3>
             <p class="text-gray-700 mb-4">Based on testing with 49.4 MB PDF (Amazon Bedrock User Guide):</p>
@@ -588,10 +616,14 @@ manager.recreate_index()
         </section>
 
         <!-- Cost Analysis -->
-        <section id="Cost Analysis" class="my-16 scroll-mt-20">
+        <section id="cost" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Cost Analysis</h2>
+                    <p class="text-lg text-gray-600">Understanding AWS infrastructure costs</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Cost Analysis</h2>
             
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-200">
@@ -645,10 +677,14 @@ manager.recreate_index()
         </section>
 
         <!-- Troubleshooting -->
-        <section id="Troubleshooting" class="my-16 scroll-mt-20">
+        <section id="troubleshooting" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Troubleshooting</h2>
+                    <p class="text-lg text-gray-600">Common issues and solutions</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Troubleshooting</h2>
             
             <div class="space-y-6">
                 <div class="border border-red-200 bg-red-50 p-4 rounded-lg">
@@ -703,10 +739,14 @@ manager.recreate_index()
         </section>
 
         <!-- Advanced Topics -->
-        <section id="Advanced Topics" class="my-16 scroll-mt-20">
+        <section id="advanced" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Advanced Topics</h2>
+                    <p class="text-lg text-gray-600">Scaling and advanced features</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Advanced Topics</h2>
             
             <h3 class="subsection-title">Multimodal RAG</h3>
             <p class="text-gray-700 mb-4">
@@ -773,10 +813,14 @@ manager.recreate_index()
         </section>
 
         <!-- Best Practices -->
-        <section id="Best Practices" class="my-16 scroll-mt-20">
+        <section id="best-practices" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Best Practices</h2>
+                    <p class="text-lg text-gray-600">Production-ready recommendations</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Best Practices</h2>
             
             <div class="space-y-6">
                 <div>
@@ -834,10 +878,14 @@ manager.recreate_index()
         </section>
 
         <!-- Resources -->
-        <section id="Resources" class="my-16 scroll-mt-20">
+        <section id="resources" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Resources & Links</h2>
+                    <p class="text-lg text-gray-600">Additional learning materials</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Resources & Links</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -882,10 +930,14 @@ manager.recreate_index()
         </section>
 
         <!-- Conclusion -->
-        <section id="Conclusion" class="my-16 scroll-mt-20">
+        <section id="conclusion" class="my-16 scroll-mt-20">
             <div class="card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-2">Conclusion</h2>
+                    <p class="text-lg text-gray-600">Key takeaways and next steps</p>
+                </div>
+
                 <div class="card p-8 max-w-4xl mx-auto">
-            <h2 class="section-title">Conclusion</h2>
             <p class="text-gray-700 leading-relaxed mb-4">
                 You've now built a production-ready RAG system using AWS Bedrock with hierarchical chunking, FAISS vector search, and automatic retrieval through Bedrock Agents.
             </p>
